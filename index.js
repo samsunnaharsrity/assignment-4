@@ -113,8 +113,7 @@ if(event.target.classList.contains('interview-btn')){
     rejectedBtnList = rejectedBtnList.filter(item=> item.mobileFirst != totalInfo.mobileFirst)
     
     
-    calAllCardSec()
-
+    
     renderInterviewBtn()
 }
 
@@ -159,6 +158,9 @@ calAllCardSec()
 
    
 })
+
+
+calAllCardSec()
 
 
 
