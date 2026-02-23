@@ -1,5 +1,6 @@
 let interviewBtnList =[];
 let rejectedBtnList = [];
+let allCountList = [];
 
 let total = document.getElementById("totalCount");
 let interviewCount = document.getElementById("interviewCount");
@@ -25,12 +26,16 @@ const rejectedBtn= document.getElementById("rejected-btn" );
 
 
 function calAllCardSec() {
-     total.innerText = allCardsSec.children.length;
-     interviewCount.innerText = allCardsSec.length;
-     rejectedCount.innerText = allCardsSec.length;
+    total.innerText = allCardsSec.children.length;
+    availableJob.innerText = allCardsSec.children.length;
+    //availableJob.innerText = interviewBtnList.length;
+    //availableJob.innerText = rejectedBtnList.length
 
 
-     availableJob.innerText = allCardsSec.children.length;
+    interviewCount.innerText = interviewBtnList.length;
+    rejectedCount.innerText = rejectedBtnList.length;
+
+
 
 
 }
@@ -62,14 +67,18 @@ function toggleStyle(id){
         allCardsSec.classList.remove('hidden');
         filteredSec.classList.add('hidden')
     }
-    else if (id == 'rejected-btn'){
+    else if (id == "rejected-btn"){
         allCardsSec.classList.add('hidden')
         filteredSec.classList.remove('hidden')
+        renderRejectedBtn()
+
     }
 }
 
 
 mainSec.addEventListener('click', function(event) {
+
+//interview er section
 
 
 if(event.target.classList.contains('interview-btn')){
@@ -84,44 +93,13 @@ if(event.target.classList.contains('interview-btn')){
     //console.log(mobileFirst,developersP,remoteNote,btnText,notes);
 
     
-//calAllCardSec()
-    const totalInfo = {
-        mobileFirst,
-        developers,
-        payment:'Interview',
-        btnText,
-        notes
-    };
-
-
-    const jobExist = interviewBtnList.find(item => item.mobileFirst === totalInfo.mobileFirst)
-
-
     cards.querySelector('.btn').innerText ='Interview'
-    if(!jobExist){
-       interviewBtnList.push(totalInfo)
-    }
-    
-}
-
-if(event.target.classList.contains('rejected-btn')){
-
-    const cards = event.target.parentNode.parentNode;
-    //console.log(parentNode);
-    const mobileFirst = cards.querySelector('.mobile-first').innerText;
-    const developers = cards.querySelector('.developers').innerText
-    const payment = cards.querySelector('.payment').innerText
-    const btnText = cards.querySelector('.btn').innerText
-    const notes  = cards.querySelector('.notes ').innerText
-    //console.log(mobileFirst,developersP,remoteNote,btnText,notes);
-
-    
 //calAllCardSec()
     const totalInfo = {
         mobileFirst,
         developers,
-        payment:'Rejected',
-        btnText,
+        payment,
+        btnText:'Interview',
         notes
     };
 
@@ -129,25 +107,37 @@ if(event.target.classList.contains('rejected-btn')){
     const jobExist = interviewBtnList.find(item => item.mobileFirst === totalInfo.mobileFirst)
 
 
-    cards.querySelector('.btn').innerText ='Rejected'
     if(!jobExist){
        interviewBtnList.push(totalInfo)
     }
+    rejectedBtnList = rejectedBtnList.filter(item=> item.mobileFirst != totalInfo.mobileFirst)
     
-}
-//console.log(jobExist);
-calAllCardSec()
+    
+    calAllCardSec()
 
-renderInterviewBtn()
+    renderInterviewBtn()
+}
+
+
+//rejected er section
+
+
+
+
    
 })
 
 
+
+
+
+//interview div
+
 function renderInterviewBtn() {
+
     filteredSec.innerHTML = ''
 
-
-    for(let item of interviewBtnList){
+    for(let interview of interviewBtnList){
         
         
     let div = document.createElement('div')
@@ -160,16 +150,16 @@ function renderInterviewBtn() {
         <div class="space-y-4 ">
             <div class="space-y-4">
                 <div>
-                    <p class="mobile-first text-2xl font-bold">${item. mobileFirst}</p>
-                    <p class="developers text-sm text-gray-500">${item. developers}</p>
+                    <p class="mobile-first text-2xl font-bold">${interview. mobileFirst}</p>
+                    <p class="developers text-sm text-gray-500">${interview. developers}</p>
                 </div>
                <div>
-                     <p class="payment text-sm text-gray-500" >${item.payment}</p>
+                     <p class="payment text-sm text-gray-500" >${interview.payment}</p>
                 </div>  
                 
                 <div>
-                <p class="btn btn-soft btn-primary">${item.btnText}</p>
-                <p class="notes text-sm text-gray-500" >${item.notes}</p>
+                <p class="btn btn-soft btn-primary">${interview.btnText}</p>
+                <p class="notes text-sm text-gray-500" >${interview.notes}</p>
                 </div>
 
             </div>
@@ -185,5 +175,50 @@ function renderInterviewBtn() {
     </div>  `
         filteredSec.appendChild(div)
     }
-    
+
+}
+
+
+//rejected div
+function renderRejectedBtn(){
+
+    filteredSec.innerHTML = ''
+    for(let rejected of rejectedBtnList){
+        
+        
+    let div = document.createElement('div')
+
+    div.className = 'w-11/12 mx-auto bg-base-200 mt-10 ';
+    div.innerHTML = `
+        
+    <div class="allCards bg-white shadow p-3  lg:flex justify-between md:grid grid-cols-1  ">
+        <!--main part1-->
+        <div class="space-y-4 ">
+            <div class="space-y-4">
+                <div>
+                    <p class="mobile-first text-2xl font-bold">${rejected. mobileFirst}</p>
+                    <p class="developers text-sm text-gray-500">${rejected. developers}</p>
+                </div>
+               <div>
+                     <p class="payment text-sm text-gray-500" >${rejected.payment}</p>
+                </div>  
+                
+                <div>
+                <p class="btn btn-soft btn-primary">${rejected.btnText}</p>
+                <p class="notes text-sm text-gray-500" >${rejected.notes}</p>
+                </div>
+
+            </div>
+            <div>
+                <button class="interview-btn btn btn-outline btn-primary">Interview</button>
+                <button class="rejected-btn btn btn-outline btn-error">Rejected</button>
+            </div>
+        </div>
+        <!--main part-2-->
+        <div  class=" py-10">
+            <button><i class="fa-solid fa-trash"></i></button>
+        </div>
+    </div>  `
+        filteredSec.appendChild(div)
+    }
 }
