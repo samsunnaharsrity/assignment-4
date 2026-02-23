@@ -28,7 +28,6 @@ const rejectedBtn= document.getElementById("rejected-btn" );
 function calAllCardSec() {
     total.innerText = allCardsSec.children.length;
     availableJob.innerText = allCardsSec.children.length;
-    //availableJob.innerText = interviewBtnList.length;
     //availableJob.innerText = rejectedBtnList.length
 
 
@@ -36,6 +35,7 @@ function calAllCardSec() {
     rejectedCount.innerText = rejectedBtnList.length;
 
 
+    //availableJob.innerText = interviewBtnList.length;
 
 
 }
@@ -140,7 +140,7 @@ else if(event.target.classList.contains('rejected-btn')){
         mobileFirst,
         developers,
         payment,
-        btnText:'Rejected',
+        btnText :'Rejected',
         notes
     };
 
