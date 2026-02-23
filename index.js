@@ -62,6 +62,8 @@ function toggleStyle(id){
     if(id =="interview-btn"){
         allCardsSec.classList.add('hidden');
         filteredSec.classList.remove('hidden')
+        renderInterviewBtn()
+
     }
     else if(id == 'all-btn') {
         allCardsSec.classList.remove('hidden');
@@ -114,7 +116,6 @@ if(event.target.classList.contains('interview-btn')){
     
     
     
-    renderInterviewBtn()
 }
 
 
@@ -177,7 +178,7 @@ function renderInterviewBtn() {
         
     let div = document.createElement('div')
 
-    div.className = 'w-11/12 mx-auto bg-base-200 mt-10 ';
+    div.className = 'w-11/12 mx-auto bg-base-200 mt-10 pb-10';
     div.innerHTML = `
         
     <div class="allCards bg-white shadow p-3  lg:flex justify-between md:grid grid-cols-1  ">
@@ -204,7 +205,7 @@ function renderInterviewBtn() {
             </div>
         </div>
         <!--main part-2-->
-        <div  class=" py-10">
+        <div  class="flex items-center justify-center h-10 my-5">
             <button><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>  `
@@ -223,7 +224,7 @@ function renderRejectedBtn(){
         
     let div = document.createElement('div')
 
-    div.className = 'w-11/12 mx-auto bg-base-200 mt-10 ';
+    div.className = 'w-11/12 mx-auto bg-base-200 mt-10 pb-10';
     div.innerHTML = `
         
     <div class="allCards bg-white shadow p-3  lg:flex justify-between md:grid grid-cols-1  ">
@@ -250,7 +251,7 @@ function renderRejectedBtn(){
             </div>
         </div>
         <!--main part-2-->
-        <div  class=" py-10">
+        <div  class="flex items-center justify-center h-10 my-5 ">
             <button><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>  `
