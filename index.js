@@ -122,7 +122,40 @@ if(event.target.classList.contains('interview-btn')){
 //rejected er section
 
 
+else if(event.target.classList.contains('rejected-btn')){
 
+    const cards = event.target.parentNode.parentNode;
+    //console.log(parentNode);
+    const mobileFirst = cards.querySelector('.mobile-first').innerText;
+    const developers = cards.querySelector('.developers').innerText
+    const payment = cards.querySelector('.payment').innerText
+    const btnText = cards.querySelector('.btn').innerText
+    const notes  = cards.querySelector('.notes ').innerText
+    //console.log(mobileFirst,developersP,remoteNote,btnText,notes);
+
+    cards.querySelector('.btn').innerText ='Rejected'
+    
+//calAllCardSec()
+    const totalInfo = {
+        mobileFirst,
+        developers,
+        payment,
+        btnText:'Rejected',
+        notes
+    };
+
+
+    const jobExist = rejectedBtnList.find(item => item.mobileFirst === totalInfo.mobileFirst)
+
+
+    if(!jobExist){
+       rejectedBtnList.push(totalInfo)
+    }
+    interviewBtnList =interviewBtnList.filter(item=> item.mobileFirst != totalInfo.mobileFirst)
+
+}
+//console.log(jobExist);
+calAllCardSec()
 
    
 })
