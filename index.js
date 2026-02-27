@@ -59,14 +59,14 @@ function toggleStyle(id){
     selected.classList.add('text-white','bg-blue-500')
     selected.classList.remove('text-gray-500','bg-white')
    
-    if(id =="interview-btn"){
+    if(id == 'all-btn') {
+        allCardsSec.classList.remove('hidden');
+        filteredSec.classList.add('hidden')
+    }
+    else if(id =="interview-btn"){
         allCardsSec.classList.add('hidden');
         filteredSec.classList.remove('hidden')
          renderInterviewBtn()
-    }
-    else if(id == 'all-btn') {
-        allCardsSec.classList.remove('hidden');
-        filteredSec.classList.add('hidden')
     }
     else if (id == "rejected-btn"){
         allCardsSec.classList.add('hidden')
@@ -161,10 +161,13 @@ calAllCardSec()
 })
 function deleteId(btn){
 
-    console.log('delete it');
+    //console.log('delete it');
     const card = btn.parentNode.parentNode;
+
+    
     
         card.remove()
+      
     
     calAllCardSec()
 

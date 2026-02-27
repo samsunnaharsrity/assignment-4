@@ -41,4 +41,4 @@ ans:- The difference between preventDefault() and stopPropagation() methods
 
  preventDefault() : this methods stops the browsers default behavior for an elements and don't stop the propagation
 
- stopPropagation() : stopPropagation() is a js event method .
+ stopPropagation() : stopPropagation() is a js event method .it stop trigger upper parent .
